@@ -1,0 +1,25 @@
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int size = rows*cols;
+        int count = 0; // using 2d array
+        int max = 0;
+        int[] dp = new int[size];
+        for(int i=0; i < rows; i++){
+            for(int j=0; j < cols; j++){
+                if( i == 0 || j == 0){
+                    dp[count] = matrix[i][j] - '0';
+                    count++;
+                } else if(matrix[i][j] == '0'){
+                    count++;
+                } else {
+                    dp[count] = Math.min(Math.min(dp[count-1], dp[count-cols]), dp[count-cols-1]) + 1;
+                    count++;
+                }
+                max = Math.max(max, dp[count - 1]);
+            }
+        }
+        return max*max;
+    }
+}
