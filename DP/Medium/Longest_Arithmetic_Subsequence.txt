@@ -1,0 +1,26 @@
+class Solution {
+    public int longestArithSeqLength(int[] A) {
+    // start from two because A.P will have atleast 2 elements and move till end.
+        int res = 2, n = A.length;
+        
+    //now create a hashmap to store the arrays which form a A.P.
+        HashMap<Integer, Integer>[] dp = new HashMap[n];
+        
+    // consider j as the bigger element than i. basically next one to j.
+        for (int j = 0; j < A.length; j++) {
+            dp[j] = new HashMap<>();
+            for (int i = 0; i < j; i++) {
+                int d = A[j] - A[i];
+                
+     // here we are checking if there are elemnents which have same difference
+    // if no then make 1 array of that element and move to check next one with same difference.
+    // if there is already a element that has same difference then just that one to that array to hashmap
+                dp[j].put(d, dp[i].getOrDefault(d, 1) + 1);
+                
+    // here we are just assuming if there are two array of different length, then just return the bigger one   
+                res = Math.max(res, dp[j].get(d));
+            }
+        }
+        return res;
+    }
+}
