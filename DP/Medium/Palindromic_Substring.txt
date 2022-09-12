@@ -2,6 +2,7 @@ class Solution {
     public int countSubstrings(String s) {
         int count =0;
         for(int i =0; i < s.length(); i++)
+        // first odd(s, i, i) then even (s , i ,i+1)
             count += isPalindrome(s, i, i) + isPalindrome(s , i, i+1);
             return count;
         
