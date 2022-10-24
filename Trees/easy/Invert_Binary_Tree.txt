@@ -1,0 +1,28 @@
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        return invert(root);
+    }
+    
+    public TreeNode invert(TreeNode root){
+        if(root == null) return null;
+        
+        TreeNode invertRight = invert(root.right);
+        TreeNode invertLeft = invert(root.left);
+        
+        root.right = invertLeft;
+        root.left = invertRight;
+        
+        return root;
+    }
+}
+
+
+/*
+
+why Treenode cannot be converted to int 
+
+or
+
+Why int cannot be converted to TreeNode
+
+*/
