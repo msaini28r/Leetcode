@@ -1,0 +1,27 @@
+// root1 = t1, root2 = t2;
+
+class Solution {
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        return merge(t1, t2);
+    }
+    
+    public TreeNode merge(TreeNode t1, TreeNode t2){
+        if(t1 == null && t2 == null){
+            return null;
+        }
+        
+        if(t1 != null && t2 == null){
+            return t1;
+        }
+        
+          if(t1 == null && t2 != null){
+            return t2;
+        }
+        
+        TreeNode sum = new TreeNode(t1.val + t2.val);
+        
+        sum.left = merge(t1.left, t2.left);
+        sum.right= merge(t1.right, t2.right);
+        return sum;
+    }
+}
