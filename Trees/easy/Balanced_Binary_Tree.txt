@@ -1,3 +1,5 @@
+// just minor changes in finding the height of a binary tree.
+
 class Solution {
     public boolean isBalanced(TreeNode root) {
         return dfsHeight(root) != -1;
