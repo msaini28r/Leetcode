@@ -3,7 +3,7 @@ private Stack<TreeNode> stack = new Stack<TreeNode>();
     public BSTIterator(TreeNode root) {
         pushAll(root);
     }
-    
+    // adding all the nodes from right to left
     public int next() {
         TreeNode temp = stack.pop();
         pushAll(temp.right);
@@ -13,7 +13,7 @@ private Stack<TreeNode> stack = new Stack<TreeNode>();
      public boolean hasNext() {
         return !stack.isEmpty();
     }
-    
+    // pushing all the nodes in the left
     public void pushAll(TreeNode node){
         for(; node != null; stack.push(node), node = node.left);
     }
