@@ -16,6 +16,5 @@ private Stack<TreeNode> stack = new Stack<TreeNode>();
     // pushing all the nodes in the left
     public void pushAll(TreeNode node){
         for(; node != null; stack.push(node), node = node.left);
-    }
-    
+    }   
 }
