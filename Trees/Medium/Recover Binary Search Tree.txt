@@ -1,0 +1,28 @@
+class Solution {
+    private TreeNode prev = null;
+    private TreeNode one = null;
+    private TreeNode two = null;
+    
+    public void recoverTree(TreeNode root) {
+        inorder(root);
+        int temp = one.val;
+        one.val = two.val;
+        two.val = temp;
+    }
+
+    private void inorder(TreeNode curr){
+        if(curr == null){
+            return;
+        }
+        inorder(curr.left);
+        if(prev != null && prev.val > curr.val){
+        // one == null means we have not identified the one TreeNode right now.
+            if(one == null){
+                one = prev;
+            }
+            two = curr;
+        }
+        prev = curr;
+        inorder(curr.right);
+    }
+}
