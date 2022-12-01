@@ -1,0 +1,21 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        // start both with first element
+        int slow = nums[0];
+        int fast = nums[0];
+
+// move slow by 1 number & fast by 2 number until they become equal
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+
+// once they become equal take fast at the first element and move both fast & slow by one element. that one element will be our answer. 
+        fast = nums[0];
+        while(slow!= fast){
+            fast = nums[fast];
+            slow = nums[slow];
+        }
+        return slow;
+    }
+}
