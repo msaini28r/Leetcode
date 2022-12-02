@@ -1,0 +1,18 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        // val are basically numbers in an array.
+        int count = 0, val = 0; 
+        for(int num : nums){
+            if(count == 0){
+// intilize our elements in an array as num, so we can move through each element in an array through loop
+                val = num;
+            }
+            if(val == num){
+                count++;
+            } else{
+                count--;
+            }
+        }
+        return val;
+    }
+}
