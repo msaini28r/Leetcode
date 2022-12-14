@@ -1,18 +1,23 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
-     Arrays.sort(coins);
-        int[] dp = new int[amount+1];
-        Arrays.fill(dp, amount +1 );
-        dp[0] = 0;
-        for(int i = 0; i <= amount; i++){
-            for(int j =0; j < coins.length; j++){
-                if(coins[j] <= i){
-                    dp[i] = Math.min(dp[i], 1 + dp[i-coins[j]]); // take the min of the coint and dp[1-coins[j]] means consider the left amount after subtracting that coin from the total amount
-                } else{
-                    break;
-                }
+    Arrays.sort(coins);
+    //zero based that's why we are adding 1.
+    int[] dp = new int[amount + 1];
+    Arrays.fill(dp, amount + 1);
+    dp[0] = 0;
+    for(int i = 0; i <= amount; i++){
+        // iterate through every coin
+        for(int j = 0; j<coins.length; j++){
+            if(coins[j] <= i){
+// check the amount left after taking subtracting the current coin value once.
+                dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]);
+// else condition is preventing us from checking if the coin is bigger than amount.
+            } else {
+                break;
             }
         }
-        return dp[amount] > amount ? -1 : dp[amount];
+    }
+    // if dp[amount] is greater than the amount return -1 else return dp[amount].
+    return dp[amount] > amount ? -1 : dp[amount];
     }
 }
